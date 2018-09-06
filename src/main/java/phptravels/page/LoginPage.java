@@ -1,6 +1,7 @@
-package phptravels;
+package phptravels.page;
 
 import org.openqa.selenium.By;
+import phptravels.driver.Driver;
 
 public class LoginPage {
 

@@ -1,11 +1,12 @@
-package phptravels;
+package phptravels.page;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import phptravels.driver.Driver;
 
 import java.util.List;
 
-public class DashBoard {
+public class DashBoardPage {
 
     public static boolean isAt() {
         List<WebElement> h5s = Driver.instance.findElements(By.className("h5"));
