@@ -36,6 +36,7 @@
 ehthumbs.db
 Thumbs.db
 *.iml
+\target
 
 # User-specific stuff:
 .idea/workspace.xml

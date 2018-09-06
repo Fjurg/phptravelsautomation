@@ -11,9 +11,8 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="phptravels" target="1.5" />
-      <module name="phptravelstest" target="1.5" />
-      <module name="phptraveltests" target="1.5" />
+      <module name="phptravels" target="1.8" />
+      <module name="phptravelstest" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
