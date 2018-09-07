@@ -19,8 +19,8 @@ public class Driver {
     }
 
     public static void destroy() {
-        instance.manage().deleteAllCookies();
-        instance.close();
-        instance.quit();
+//        instance.manage().deleteAllCookies();
+//        instance.close();
+//        instance.quit();
     }
 }

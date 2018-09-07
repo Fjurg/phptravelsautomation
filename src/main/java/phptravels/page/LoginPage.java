@@ -9,19 +9,19 @@ public class LoginPage {
         Driver.instance.navigate().to("https://www.phptravels.net/admin");
     }
 
-    public static LoginData loginAs(String userName) {
-        return new LoginData(userName);
+    public static LoginCommand loginAs(String userName) {
+        return new LoginCommand(userName);
     }
 
-    public static class LoginData {
+    public static class LoginCommand {
         private String userName;
         private String password;
 
-        public LoginData(String userName) {
+        public LoginCommand(String userName) {
             this.userName = userName;
         }
 
-        public LoginData withPassword(String password) {
+        public LoginCommand withPassword(String password) {
             this.password = password;
             return this;
         }
