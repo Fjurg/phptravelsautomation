@@ -1,9 +1,14 @@
 package phptravels.page;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.ElementNotSelectableException;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import phptravels.driver.Driver;
 import phptravels.enums.*;
+
+import java.util.List;
+import java.util.Optional;
 
 public class QuickBookingPage {
 
@@ -50,16 +55,22 @@ public class QuickBookingPage {
             return this;
         }
 
-        public void book() {
+        public void book() throws Exception {
+            Driver.instance.switchTo().activeElement();
 
-            //TODO: How can i click this fucking dropdown?
-            Select dropDown = new Select(Driver.instance.findElement(By.id("servicetype")));
+            Driver.waitFor();
+            Select dropdown = new Select(Driver.instance.findElement(By.id("servicetype")));
 
-            Driver.instance.findElement(By.id("servicetype")).click();
+            dropdown.selectByVisibleText(service.getHotels());
 
-            dropDown.selectByVisibleText(service.getHotels());
+            List<WebElement> buttons = Driver.instance.findElements(By.tagName("button"));
 
-            Driver.instance.findElement(By.className("btn btn-primary")).click();
+            Optional<WebElement> nextButton = buttons.stream()
+                    .filter(button -> button.getText().contains("NEXT"))
+                    .findFirst();
+
+            nextButton.orElseThrow(() -> new ElementNotSelectableException("Next-button could not be found"))
+                    .click();
         }
     }
 }

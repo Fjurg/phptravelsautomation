@@ -1,6 +1,7 @@
 package phptravels.page;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.WebElement;
 import phptravels.driver.Driver;
 
@@ -33,7 +34,9 @@ public class DashboardPage {
                     .filter(h5 -> h5.getText().trim().equalsIgnoreCase(menuButtonText))
                     .findFirst();
 
-            matchingElement.get().click();
+            matchingElement.orElseThrow(() ->
+                    new ElementNotInteractableException("Button in top navigation bar could not be found"))
+                    .click();
         }
     }
 }
