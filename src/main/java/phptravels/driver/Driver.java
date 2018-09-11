@@ -1,5 +1,6 @@
 package phptravels.driver;
 
+import org.openqa.selenium.ElementNotSelectableException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -22,8 +23,9 @@ public class Driver {
     }
 
     public static void waitFor(WebElement element) {
-        await("Wait for it...").atMost(10, TimeUnit.SECONDS)
-                .until(() -> element.isDisplayed() || element.isEnabled() || element.isSelected());
+        await("Wait for it...").ignoreException(ElementNotSelectableException.class)
+                .atMost(10, TimeUnit.SECONDS)
+                .until(() -> element.isDisplayed() || element.isEnabled());
     }
 
     public static void destroy() {
