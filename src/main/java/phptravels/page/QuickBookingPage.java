@@ -1,6 +1,5 @@
 package phptravels.page;
 
-import org.awaitility.Awaitility;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotSelectableException;
 import org.openqa.selenium.Keys;
@@ -14,6 +13,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
+
+import static org.awaitility.Awaitility.await;
 
 public class QuickBookingPage {
 
@@ -80,11 +81,11 @@ public class QuickBookingPage {
             inputHotel();
 
             // Todo: LOL Refactor this. It works though.
-            Awaitility.await().ignoreException(ElementNotSelectableException.class)
+            await().ignoreException(ElementNotSelectableException.class)
                     .pollInterval(500, TimeUnit.MILLISECONDS)
                     .until(() -> {
-                        List<WebElement> span1 = Driver.instance.findElements(By.tagName("span"));
-                        return span1.stream()
+                        List<WebElement> allSpan = Driver.instance.findElements(By.tagName("span"));
+                        return allSpan.stream()
                                 .anyMatch(span -> span.getText().equalsIgnoreCase("select room"));
                     });
 
